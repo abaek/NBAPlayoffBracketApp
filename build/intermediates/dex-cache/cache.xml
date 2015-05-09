@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-f2e4204492faa2299984e30d9ae775ea1c909c2e.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/pre-dexed/debug/classes-0df5efa5acbed41648c864bd4699724c2121a1d8.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/libs/mortar-0.16.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0dd9e7052ee528f7fe43486649d7a3eb2d798607">
+        <dex dex="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/pre-dexed/debug/mortar-0.16-95f6acede6b90a269090f647a1eb4a0fe18b3b36.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-d26c2b066f526530cd2186ae9e872ac59adb5095.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-767a919df510eead4cd83a7d23f5c93fa7a9679f.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/javax.inject-1-b2e6eb7501d00c9edd6aff0b6be3f94e889b6ab2.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/AndroidStudioProjects/Keeper/app/libs/mortar-0.16.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0dd9e7052ee528f7fe43486649d7a3eb2d798607">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/mortar-0.16-4f506ff4bb5a9d8756ffdb7b0a5651636f5aecf0.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.5.0/81241ff7078ef14f42ea2a8995fa09c096256e6b/javawriter-2.5.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81241ff7078ef14f42ea2a8995fa09c096256e6b">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/javawriter-2.5.0-f49a8659336221e70204f32f39ef9c931c1be840.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/classes-68af9648972d229ba0b9e82819dd0f4c8630a249.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/15.0/ed727a8d9f247e2050281cb083f1c77b09dcb5cd/guava-15.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ed727a8d9f247e2050281cb083f1c77b09dcb5cd">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/guava-15.0-d269c90baa93e82b4672a198bb3c5c5fa4d0b359.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/libs/dagger-1.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e8f912ee19ad84958510883ea191135276b091f8">
+        <dex dex="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/pre-dexed/debug/dagger-1.2.2-d9b35712b59371fe307362493345f5e8f9de620f.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/AndroidStudioProjects/Keeper/app/libs/dagger-1.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e8f912ee19ad84958510883ea191135276b091f8">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/dagger-1.2.2-ca973a0bb81b0afdac5be75374d6dac627c75cab.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/classes-fe00115cc11e53961c94a2377bcff48a9cf6d266.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/.gradle/caches/modules-2/files-2.1/com.squareup.dagger/dagger-compiler/1.2.2/fa9b2f9ae597cedf2a66ef3e60662ff36bb60e57/dagger-compiler-1.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fa9b2f9ae597cedf2a66ef3e60662ff36bb60e57">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/dagger-compiler-1.2.2-2beae31a6c7badcbbd6680fa14c0badbe39c1fe8.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-fce2d799eae4982b7fd977e0f8d7cb04eaac3044.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/libs/flow-0.8.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a9eb56d1fede600444f683ae8d506327937133e5">
+        <dex dex="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/pre-dexed/debug/flow-0.8-fc7b7d5d6b648347c26d38d4181f2294bfe1b3a0.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/.gradle/caches/modules-2/files-2.1/com.squareup.flow/flow/0.8/a9eb56d1fede600444f683ae8d506327937133e5/flow-0.8.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a9eb56d1fede600444f683ae8d506327937133e5">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/flow-0.8-9353e5942be0fd1b9509b30204a818ff1de56b85.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/libs/Parse-1.9.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5811138d4e6cb9d45030e133ef1a61b935154c3a">
+        <dex dex="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/pre-dexed/debug/Parse-1.9.0-4bd8d2014a1adbd0a35c0a4b5fae345fbd1142ab.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/Andy/Dropbox/Projects/NBAPlayoffBracketApp/app/build/intermediates/pre-dexed/debug/classes-7fab03d20ffb9ada9722e9759314d1205a63ad35.jar" />
+    </item>
+    <item
+        jar="/Users/Andy/AndroidStudioProjects/Keeper/app/libs/Parse-1.9.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5811138d4e6cb9d45030e133ef1a61b935154c3a">
+        <dex dex="/Users/Andy/AndroidStudioProjects/Keeper/app/build/intermediates/pre-dexed/debug/Parse-1.9.0-bc6aac8465c4deb55566bb7d50ecf6de134f4ab4.jar" />
+    </item>
+
+</items>

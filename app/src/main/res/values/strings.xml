@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">NBA Playoff Bracket</string>
+    <string name="title_activity_login_screen">LoginScreen</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="username_title">Username:</string>
+    <string name="password_title">Password:</string>
+    <string name="landing_page_caption">Take notes faster than ever.</string>
+    <string name="add_note">Add New Note</string>
+</resources>
