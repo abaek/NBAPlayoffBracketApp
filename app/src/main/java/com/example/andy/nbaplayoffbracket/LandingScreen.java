@@ -1,5 +1,6 @@
 package com.example.andy.nbaplayoffbracket;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 
 import javax.inject.Inject;
@@ -19,15 +20,19 @@ public class LandingScreen implements Blueprint {
   static class Presenter extends ViewPresenter<LandingView> {
 
     private final Flow flow;
+    private final ActionBar actionBar;
 
     @Inject
-    Presenter(Flow flow) {
+    Presenter(Flow flow, ActionBar actionBar) {
       this.flow = flow;
+      this.actionBar = actionBar;
     }
 
     @Override
     protected void onLoad(Bundle savedInstanceState) {
       super.onLoad(savedInstanceState);
+      actionBar.setDisplayHomeAsUpEnabled(false);
+      actionBar.hide();
     }
 
     public void loginClicked() {

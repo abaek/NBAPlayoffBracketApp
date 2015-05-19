@@ -1,5 +1,6 @@
 package com.example.andy.nbaplayoffbracket;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -24,15 +25,18 @@ public class LoginScreen implements Blueprint {
   static class Presenter extends ViewPresenter<LoginView> {
 
     private final Flow flow;
+    private final ActionBar actionBar;
 
     @Inject
-    Presenter(Flow flow) {
+    Presenter(Flow flow, ActionBar actionBar) {
       this.flow = flow;
+      this.actionBar = actionBar;
     }
 
     @Override
     protected void onLoad(Bundle savedInstanceState) {
       super.onLoad(savedInstanceState);
+      actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     public void loginButtonClicked(String username, String password) {
@@ -48,7 +52,6 @@ public class LoginScreen implements Blueprint {
         }
       });
     }
-
   }
 
   @Override

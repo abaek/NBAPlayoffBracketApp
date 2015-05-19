@@ -1,13 +1,14 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="gutter_half">16dp</dimen>
+    <dimen name="gutter_full">32dp</dimen>
+    <dimen name="gutter_large">64dp</dimen>
 
-    <dimen name="top_menu_bar_height">20dp</dimen>
-    <dimen name="loginFieldWidth">400dp</dimen>
+
 
     <dimen name="title_text_size">50sp</dimen>
     <dimen name="caption_text_size">20sp</dimen>
+    <dimen name="edit_text_size">20sp</dimen>
 
 
 </resources>

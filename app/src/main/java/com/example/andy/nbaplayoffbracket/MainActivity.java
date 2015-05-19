@@ -1,8 +1,11 @@
 package com.example.andy.nbaplayoffbracket;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import javax.inject.Singleton;
@@ -18,7 +21,7 @@ import mortar.Mortar;
 import mortar.MortarActivityScope;
 import mortar.MortarScope;
 
-public class MainActivity extends Activity implements Flow.Listener {
+public class MainActivity extends Activity implements Flow.Listener, ActionBar.TabListener {
 
   private Flow flow;
   private MortarActivityScope activityScope;
@@ -46,6 +49,15 @@ public class MainActivity extends Activity implements Flow.Listener {
         // No-op.
       }
     });
+
+    ActionBar bar = getActionBar();
+    bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+    bar.setDisplayShowTitleEnabled(false);
+    bar.addTab(bar.newTab().setText("Home").setTabListener(this));
+    bar.addTab(bar.newTab().setText("Picks").setTabListener(this));
+    bar.addTab(bar.newTab().setText("Standings").setTabListener(this));
+    bar.addTab(bar.newTab().setText("Matrix").setTabListener(this));
+    bar.addTab(bar.newTab().setText("Settings").setTabListener(this));
   }
 
   @Override
@@ -70,6 +82,17 @@ public class MainActivity extends Activity implements Flow.Listener {
   }
 
   @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        onBackPressed();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
+  @Override
   protected void onDestroy() {
     super.onDestroy();
 
@@ -84,7 +107,6 @@ public class MainActivity extends Activity implements Flow.Listener {
   public void go(Backstack backstack, Flow.Direction direction, Flow.Callback callback) {
     Object screen = backstack.current().getScreen();
     containerView.displayView(getView(screen), direction);
-    setTitle(screen.getClass().getSimpleName());
     callback.onComplete();
   }
 
@@ -98,12 +120,33 @@ public class MainActivity extends Activity implements Flow.Listener {
     return Layouts.createView(scopedContext, screen);
   }
 
+  @Override
+  public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+  }
+
+  @Override
+  public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+  }
+
+  @Override
+  public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+  }
+
   @Module(injects = MainActivity.class, library = true)
   class ActivityModule implements Blueprint {
     @Provides
     @Singleton
     Flow provideAppFlow() {
       return flow;
+    }
+
+    @Provides
+    @Singleton
+    ActionBar provideActionBar() {
+      return getActionBar();
     }
 
     @Override

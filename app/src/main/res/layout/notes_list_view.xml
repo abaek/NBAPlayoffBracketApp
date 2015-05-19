@@ -3,25 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/gutter_full"
+    android:paddingLeft="@dimen/gutter_full"
+    android:paddingRight="@dimen/gutter_full"
     >
-
-    <EditText
-        android:id="@+id/new_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/add_note_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_note"/>
-
-    <ListView
-        android:id="@+id/notes_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </com.example.andy.nbaplayoffbracket.NotesListView>
