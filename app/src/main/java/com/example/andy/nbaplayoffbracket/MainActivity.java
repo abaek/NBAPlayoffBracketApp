@@ -122,17 +122,22 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
 
   @Override
   public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-
+    int pos = tab.getPosition();
+    if (pos == 0) {
+      flow.replaceTo(new PicksScreen());
+    } else if (pos == 1) {
+      flow.replaceTo(new MatrixScreen());
+    }
   }
 
   @Override
   public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
+    // No-op.
   }
 
   @Override
   public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
+    // No-op.
   }
 
   @Module(injects = MainActivity.class, library = true)

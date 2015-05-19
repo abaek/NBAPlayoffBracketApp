@@ -6,12 +6,12 @@ import android.widget.LinearLayout;
 
 import javax.inject.Inject;
 
-public class NotesListView extends LinearLayout {
+public class MatrixView extends LinearLayout {
 
   @Inject
-  NotesListScreen.Presenter presenter;
+  MatrixScreen.Presenter presenter;
 
-  public NotesListView(Context context, AttributeSet attrs) {
+  public MatrixView(Context context, AttributeSet attrs) {
     super(context, attrs);
     Utils.inject(context, this);
   }

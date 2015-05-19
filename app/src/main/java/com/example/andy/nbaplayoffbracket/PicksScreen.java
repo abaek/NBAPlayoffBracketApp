@@ -12,12 +12,12 @@ import flow.Layout;
 import mortar.Blueprint;
 import mortar.ViewPresenter;
 
-@Layout(R.layout.notes_list_view)
-@Module(injects = NotesListView.class, addsTo = NotesListScreen.Module.class)
-public class NotesListScreen implements Blueprint {
+@Layout(R.layout.picks_view)
+@Module(injects = PicksView.class, addsTo = PicksScreen.Module.class)
+public class PicksScreen implements Blueprint {
 
   @Singleton
-  static class Presenter extends ViewPresenter<NotesListView> {
+  static class Presenter extends ViewPresenter<PicksView> {
 
     private final Flow flow;
     private final ActionBar actionBar;
@@ -31,7 +31,7 @@ public class NotesListScreen implements Blueprint {
     @Override
     protected void onLoad(Bundle savedInstanceState) {
       super.onLoad(savedInstanceState);
-      actionBar.hide();
+      actionBar.show();
     }
   }
 
