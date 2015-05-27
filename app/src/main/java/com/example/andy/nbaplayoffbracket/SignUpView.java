@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -27,7 +26,6 @@ public class SignUpView extends LinearLayout {
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    Toast.makeText(getContext(), "Login View", Toast.LENGTH_SHORT).show();
 
     username = (EditText) findViewById(R.id.username);
     password = (EditText) findViewById(R.id.password);

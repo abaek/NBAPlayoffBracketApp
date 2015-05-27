@@ -27,6 +27,12 @@ public class ContainerView extends FrameLayout {
     return !disabled && super.dispatchTouchEvent(ev);
   }
 
+  public void displayView(View view) {
+    addView(view);
+    removeView(activeView);
+    activeView = view;
+  }
+
   public void displayView(View view, final Flow.Direction direction) {
     addView(view);
 

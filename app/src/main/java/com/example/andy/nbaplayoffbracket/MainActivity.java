@@ -53,10 +53,9 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
     ActionBar bar = getActionBar();
     bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     bar.setDisplayShowTitleEnabled(false);
-    bar.addTab(bar.newTab().setText("Home").setTabListener(this));
     bar.addTab(bar.newTab().setText("Picks").setTabListener(this));
-    bar.addTab(bar.newTab().setText("Standings").setTabListener(this));
     bar.addTab(bar.newTab().setText("Matrix").setTabListener(this));
+    bar.addTab(bar.newTab().setText("Standings").setTabListener(this));
     bar.addTab(bar.newTab().setText("Settings").setTabListener(this));
   }
 
@@ -106,7 +105,7 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
   @Override
   public void go(Backstack backstack, Flow.Direction direction, Flow.Callback callback) {
     Object screen = backstack.current().getScreen();
-    containerView.displayView(getView(screen), direction);
+    containerView.displayView(getView(screen));
     callback.onComplete();
   }
 
@@ -124,9 +123,11 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
   public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
     int pos = tab.getPosition();
     if (pos == 0) {
-      flow.replaceTo(new PicksScreen());
+      flow.goTo(new PicksScreen());
     } else if (pos == 1) {
-      flow.replaceTo(new MatrixScreen());
+      flow.goTo(new MatrixScreen());
+    } else if (pos == 3) {
+      flow.goTo(new SettingsScreen());
     }
   }
 

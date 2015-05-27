@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -25,7 +24,6 @@ public class LandingView extends LinearLayout {
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    Toast.makeText(getContext(), "Landing View", Toast.LENGTH_SHORT).show();
 
     loginButton = (Button) findViewById(R.id.login);
     loginButton.setOnClickListener(new OnClickListener() {

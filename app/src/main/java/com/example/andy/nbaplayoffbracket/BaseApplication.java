@@ -16,9 +16,7 @@ public class BaseApplication extends Application {
     super.onCreate();
     rootScope = Mortar.createRootScope(BuildConfig.DEBUG);
 
-    // Enable Local Datastore.
-    ParseObject.registerSubclass(Note.class);
-    Parse.enableLocalDatastore(this);
+    ParseObject.registerSubclass(Game.class);
     Parse.initialize(this, "XMlHOICLdsocoC7Zy0x3sf9i6PFmIQmfyZ96xKw4", "wBEZtH5EpDKxLmSqFe3Ibr2VqbhA28rnYg45Q8iP");  }
 
   public MortarScope getRootScope() {
