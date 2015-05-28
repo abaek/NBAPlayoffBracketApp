@@ -5,4 +5,6 @@
     <color name="primary_dark">#1976D2</color>
     <color name="text_primary">#ffffff</color>
     <color name="white">#ffffff</color>
+    <color name="win_color">#FFB74D</color>
+    <color name="lose_color">#ffffff</color>
 </resources>

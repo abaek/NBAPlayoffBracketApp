@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.parse.ParseUser;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -32,16 +34,20 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    // Sets up container for flow.
     setContentView(R.layout.activity_main);
     containerView = (ContainerView) findViewById(R.id.container);
 
+    // Mortar setup.
     MortarScope parentScope = ((BaseApplication) getApplication()).getRootScope();
     activityScope = Mortar.requireActivityScope(parentScope, new ActivityModule());
     activityScope.onCreate(savedInstanceState);
 
+    // Dagger setup.
     activityGraph = ObjectGraph.create(new ActivityModule());
     activityGraph.inject(this);
 
+    // Creates initial backstack.
     flow = new Flow(getInitialBackstack(savedInstanceState), this);
     go(flow.getBackstack(), Flow.Direction.FORWARD, new Flow.Callback() {
       @Override
@@ -50,9 +56,10 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
       }
     });
 
+    // Sets up action bar.
     ActionBar bar = getActionBar();
-    bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     bar.setDisplayShowTitleEnabled(false);
+    bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     bar.addTab(bar.newTab().setText("Picks").setTabListener(this));
     bar.addTab(bar.newTab().setText("Matrix").setTabListener(this));
     bar.addTab(bar.newTab().setText("Standings").setTabListener(this));
@@ -84,6 +91,7 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
+        // For up button in action bar.
         onBackPressed();
         return true;
       default:
@@ -94,7 +102,6 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
   @Override
   protected void onDestroy() {
     super.onDestroy();
-
     if (isFinishing() && activityScope != null) {
       MortarScope parentScope = ((BaseApplication) getApplication()).getRootScope();
       parentScope.destroyChild(activityScope);
@@ -105,11 +112,16 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
   @Override
   public void go(Backstack backstack, Flow.Direction direction, Flow.Callback callback) {
     Object screen = backstack.current().getScreen();
+    // No animation.
     containerView.displayView(getView(screen));
     callback.onComplete();
   }
 
   private Backstack getInitialBackstack(Bundle savedInstanceState) {
+    // Returns PicksScreen if logged in, LandingScreen if logged out.
+    if (ParseUser.getCurrentUser() != null) {
+      return Backstack.single(new PicksScreen());
+    }
     return Backstack.single(new LandingScreen());
   }
 
@@ -121,13 +133,16 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
 
   @Override
   public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-    int pos = tab.getPosition();
-    if (pos == 0) {
-      flow.goTo(new PicksScreen());
-    } else if (pos == 1) {
-      flow.goTo(new MatrixScreen());
-    } else if (pos == 3) {
-      flow.goTo(new SettingsScreen());
+    // If logged in, skips this step.
+    if (ParseUser.getCurrentUser() != null) {
+      int pos = tab.getPosition();
+      if (pos == 0) {
+        flow.goTo(new PicksScreen());
+      } else if (pos == 1) {
+        flow.goTo(new MatrixScreen());
+      } else if (pos == 3) {
+        flow.goTo(new SettingsScreen());
+      }
     }
   }
 

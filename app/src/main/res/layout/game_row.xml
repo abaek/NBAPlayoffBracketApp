@@ -5,10 +5,10 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/gutter_half"
-    android:paddingTop="@dimen/gutter_half"
-    android:paddingLeft="@dimen/gutter_half"
-    android:paddingRight="@dimen/gutter_half"
+    android:layout_marginBottom="@dimen/gutter_half"
+    android:layout_marginTop="@dimen/gutter_half"
+    android:layout_marginLeft="@dimen/gutter_half"
+    android:layout_marginRight="@dimen/gutter_half"
     android:layout_gravity="center"
     card_view:cardCornerRadius="4dp">
 
@@ -17,28 +17,34 @@
         android:layout_height="wrap_content">
 
         <FrameLayout
+            android:id="@+id/home_team_background"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@color/ripple_material_dark">
+            android:clickable="true"
+            android:background="@color/lose_color">
 
             <TextView
                 android:id="@+id/home_team_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
 
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/away_team_background"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@color/ripple_material_light">
+            android:clickable="true"
+            android:background="@color/lose_color">
 
             <TextView
                 android:id="@+id/away_team_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
 
         </FrameLayout>
 

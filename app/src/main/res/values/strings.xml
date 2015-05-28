@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">NBA Playoff Bracket</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="password_hint">password</string>
     <string name="sign_up">Sign Up</string>
     <string name="username_hint">username</string>
-    <string name="password_hint">password</string>
-    <string name="add_note">a</string>
 </resources>
