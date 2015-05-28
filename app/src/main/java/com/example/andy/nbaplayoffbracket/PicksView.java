@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -50,6 +51,7 @@ public class PicksView extends LinearLayout {
   private class GamesListAdapter extends ParseQueryAdapter<Game> {
 
     private HashMap<String, Boolean> picks = new HashMap<>();
+    private HashMap<String, String> pickIds = new HashMap<>();
 
     public GamesListAdapter(Context context) {
       super(context, new ParseQueryAdapter.QueryFactory<Game>() {
@@ -67,6 +69,7 @@ public class PicksView extends LinearLayout {
           if (e == null) {
             for (ParseObject pick : picksList) {
               picks.put(pick.getString("gameId"), pick.getBoolean("result"));
+              pickIds.put(pick.getString("gameId"), pick.getObjectId());
             }
           }
         }
@@ -81,6 +84,7 @@ public class PicksView extends LinearLayout {
         holder = new ViewHolder();
         holder.homeTeamName = (TextView) view.findViewById(R.id.home_team_name);
         holder.awayTeamName = (TextView) view.findViewById(R.id.away_team_name);
+        holder.gameNumber = (TextView) view.findViewById(R.id.game_number);
         holder.homeTeamBackground = (FrameLayout) view.findViewById(R.id.home_team_background);
         holder.awayTeamBackground = (FrameLayout) view.findViewById(R.id.away_team_background);
         holder.gameId = game.getObjectId();
@@ -90,6 +94,7 @@ public class PicksView extends LinearLayout {
       }
       holder.homeTeamName.setText(game.getHomeTeam());
       holder.awayTeamName.setText(game.getAwayTeam());
+      holder.gameNumber.setText(Integer.toString(game.getGameNumber()));
 
       // Set appropriate background color.
       if (picks.containsKey(game.getObjectId())) {
@@ -106,19 +111,34 @@ public class PicksView extends LinearLayout {
         holder.awayTeamBackground.setBackgroundColor(getResources().getColor(R.color.lose_color));
       }
 
+      // When you click on a team to win.
       holder.homeTeamBackground.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
+          // Update old pick.
           if (picks.containsKey(holder.gameId)) {
-
-          } else {
+            // No change.
+            if (!picks.get(holder.gameId)) {
+              ParseQuery<ParseObject> query = ParseQuery.getQuery("Pick");
+              query.getInBackground(pickIds.get(holder.gameId), new GetCallback<ParseObject>() {
+                public void done(ParseObject object, ParseException e) {
+                  if (e == null) {
+                    object.put("result", true);
+                    object.saveInBackground();
+                  }
+                }
+              });
+            }
+          }
+          // Create new pick.
+          else {
             ParseObject gameScore = new ParseObject("Pick");
             gameScore.put("result", true);
             gameScore.put("userId", ParseUser.getCurrentUser().getObjectId());
             gameScore.put("gameId", holder.gameId);
             gameScore.saveInBackground();
-            picks.put(holder.gameId, true);
           }
+          picks.put(holder.gameId, true);
           holder.awayTeamBackground.setBackgroundColor(getResources().getColor(R.color.lose_color));
           holder.homeTeamBackground.setBackgroundColor(getResources().getColor(R.color.win_color));
         }
@@ -127,20 +147,35 @@ public class PicksView extends LinearLayout {
       holder.awayTeamBackground.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
+          // Update old pick.
           if (picks.containsKey(holder.gameId)) {
-
-          } else {
+            // No change.
+            if (picks.get(holder.gameId)) {
+              ParseQuery<ParseObject> query = ParseQuery.getQuery("Pick");
+              query.getInBackground(pickIds.get(holder.gameId), new GetCallback<ParseObject>() {
+                public void done(ParseObject object, ParseException e) {
+                  if (e == null) {
+                    object.put("result", false);
+                    object.saveInBackground();
+                  }
+                }
+              });
+            }
+          }
+          // Create new pick.
+          else {
             ParseObject gameScore = new ParseObject("Pick");
             gameScore.put("result", false);
             gameScore.put("userId", ParseUser.getCurrentUser().getObjectId());
             gameScore.put("gameId", holder.gameId);
             gameScore.saveInBackground();
-            picks.put(holder.gameId, false);
           }
+          picks.put(holder.gameId, false);
           holder.homeTeamBackground.setBackgroundColor(getResources().getColor(R.color.lose_color));
           holder.awayTeamBackground.setBackgroundColor(getResources().getColor(R.color.win_color));
         }
       });
+
       return view;
     }
   }
