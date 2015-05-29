@@ -22,6 +22,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import static android.text.format.DateFormat.format;
+
 public class PicksView extends LinearLayout {
 
   @Inject
@@ -85,6 +87,7 @@ public class PicksView extends LinearLayout {
         holder.homeTeamName = (TextView) view.findViewById(R.id.home_team_name);
         holder.awayTeamName = (TextView) view.findViewById(R.id.away_team_name);
         holder.gameNumber = (TextView) view.findViewById(R.id.game_number);
+        holder.gameDate = (TextView) view.findViewById(R.id.game_date);
         holder.homeTeamBackground = (FrameLayout) view.findViewById(R.id.home_team_background);
         holder.awayTeamBackground = (FrameLayout) view.findViewById(R.id.away_team_background);
         holder.gameId = game.getObjectId();
@@ -94,7 +97,9 @@ public class PicksView extends LinearLayout {
       }
       holder.homeTeamName.setText(game.getHomeTeam());
       holder.awayTeamName.setText(game.getAwayTeam());
-      holder.gameNumber.setText(Integer.toString(game.getGameNumber()));
+      holder.gameNumber.setText(getResources().getString(R.string.game)
+              + " " + Integer.toString(game.getGameNumber()));
+      holder.gameDate.setText(format("h:mm E MMM dd", game.getGameDate()));
 
       // Set appropriate background color.
       if (picks.containsKey(game.getObjectId())) {
@@ -185,6 +190,7 @@ public class PicksView extends LinearLayout {
     TextView homeTeamName;
     TextView awayTeamName;
     TextView gameNumber;
+    TextView gameDate;
     FrameLayout homeTeamBackground;
     FrameLayout awayTeamBackground;
   }

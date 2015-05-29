@@ -4,7 +4,7 @@
     <dimen name="gutter_full">32dp</dimen>
     <dimen name="gutter_large">64dp</dimen>
 
-
+    <dimen name="text_side_padding">5dp</dimen>
 
     <dimen name="title_text_size">50sp</dimen>
     <dimen name="caption_text_size">20sp</dimen>

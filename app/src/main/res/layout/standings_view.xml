@@ -1,0 +1,12 @@
+<com.example.andy.nbaplayoffbracket.StandingsView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/gutter_full"
+    android:paddingLeft="@dimen/gutter_full"
+    android:paddingRight="@dimen/gutter_full"
+    android:background="@color/white"
+    >
+
+</com.example.andy.nbaplayoffbracket.StandingsView>

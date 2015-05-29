@@ -36,8 +36,6 @@ public class LoginScreen implements Blueprint {
     @Override
     protected void onLoad(Bundle savedInstanceState) {
       super.onLoad(savedInstanceState);
-//      // Display back button.
-//      actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     public void loginButtonClicked(String username, String password) {
@@ -47,7 +45,6 @@ public class LoginScreen implements Blueprint {
           if (e != null) {
             Toast.makeText(getView().getContext(), "Wrong credentials.", Toast.LENGTH_SHORT).show();
           } else {
-            Toast.makeText(getView().getContext(), "Successfully Logged In.", Toast.LENGTH_SHORT).show();
             flow.resetTo(new PicksScreen());
           }
         }

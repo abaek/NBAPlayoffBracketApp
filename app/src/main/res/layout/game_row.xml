@@ -5,11 +5,6 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/gutter_half"
-    android:layout_marginTop="@dimen/gutter_half"
-    android:layout_marginLeft="@dimen/gutter_half"
-    android:layout_marginRight="@dimen/gutter_half"
-    android:layout_gravity="center"
     card_view:cardCornerRadius="4dp">
 
     <LinearLayout
@@ -17,14 +12,26 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/game_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/text_side_padding"
+                android:paddingRight="@dimen/text_side_padding"
+                />
+
+            <TextView
+                android:id="@+id/game_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/text_side_padding"
+                android:paddingRight="@dimen/text_side_padding"
                 />
 
         </LinearLayout>
@@ -33,9 +40,8 @@
             android:id="@+id/home_team_background"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:background="@color/lose_color">
+            android:layout_weight="2"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/home_team_name"
@@ -49,9 +55,8 @@
             android:id="@+id/away_team_background"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:background="@color/lose_color">
+            android:layout_weight="2"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/away_team_name"

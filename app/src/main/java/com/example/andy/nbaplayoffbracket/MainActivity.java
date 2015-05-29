@@ -140,6 +140,8 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
         flow.goTo(new PicksScreen());
       } else if (pos == 1) {
         flow.goTo(new MatrixScreen());
+      } else if (pos == 2) {
+        flow.goTo(new StandingsScreen());
       } else if (pos == 3) {
         flow.goTo(new SettingsScreen());
       }
