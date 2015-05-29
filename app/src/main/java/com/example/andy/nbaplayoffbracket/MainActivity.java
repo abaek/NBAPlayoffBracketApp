@@ -60,10 +60,10 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
     ActionBar bar = getActionBar();
     bar.setDisplayShowTitleEnabled(false);
     bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-    bar.addTab(bar.newTab().setText("Picks").setTabListener(this));
-    bar.addTab(bar.newTab().setText("Matrix").setTabListener(this));
-    bar.addTab(bar.newTab().setText("Standings").setTabListener(this));
-    bar.addTab(bar.newTab().setText("Settings").setTabListener(this));
+    bar.addTab(bar.newTab().setText(getResources().getString(R.string.tab_picks_title)).setTabListener(this));
+    bar.addTab(bar.newTab().setText(getResources().getString(R.string.tab_results_title)).setTabListener(this));
+    bar.addTab(bar.newTab().setText(getResources().getString(R.string.tab_standings_title)).setTabListener(this));
+    bar.addTab(bar.newTab().setText(getResources().getString(R.string.tab_settings_title)).setTabListener(this));
   }
 
   @Override
@@ -139,7 +139,7 @@ public class MainActivity extends Activity implements Flow.Listener, ActionBar.T
       if (pos == 0) {
         flow.goTo(new PicksScreen());
       } else if (pos == 1) {
-        flow.goTo(new MatrixScreen());
+        flow.goTo(new ResultsScreen());
       } else if (pos == 2) {
         flow.goTo(new StandingsScreen());
       } else if (pos == 3) {

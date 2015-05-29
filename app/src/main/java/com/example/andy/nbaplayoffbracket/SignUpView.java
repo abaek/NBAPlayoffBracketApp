@@ -15,7 +15,9 @@ public class SignUpView extends LinearLayout {
   SignUpScreen.Presenter presenter;
 
   private EditText username;
+  private EditText screenName;
   private EditText password;
+  private EditText confirmPassword;
   private Button signupButton;
 
   public SignUpView(Context context, AttributeSet attrs) {
@@ -28,12 +30,14 @@ public class SignUpView extends LinearLayout {
     super.onFinishInflate();
 
     username = (EditText) findViewById(R.id.username);
+    screenName = (EditText) findViewById(R.id.screen_name);
     password = (EditText) findViewById(R.id.password);
+    confirmPassword = (EditText) findViewById(R.id.confirm_password);
 
     signupButton = (Button) findViewById(R.id.sign_up_button);
     signupButton.setOnClickListener(new View.OnClickListener() {
       public void onClick(View view) {
-        presenter.registerClicked(username.getText().toString(), password.getText().toString());
+        presenter.registerClicked(username.getText().toString(),  screenName.getText().toString(), password.getText().toString(), confirmPassword.getText().toString());
       }
     });
 

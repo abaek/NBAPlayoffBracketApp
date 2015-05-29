@@ -32,6 +32,8 @@ public class PicksView extends LinearLayout {
   public ParseQueryAdapter<Game> gamesListAdapter;
 
   private ListView gamesList;
+  private HashMap<String, Boolean> picks = new HashMap<>();
+  private HashMap<String, String> pickIds = new HashMap<>();
 
   public PicksView(Context context, AttributeSet attrs) {
     super(context, attrs);
@@ -45,15 +47,26 @@ public class PicksView extends LinearLayout {
     // Set up the adapter
     gamesList = (ListView) findViewById(R.id.games_list);
     gamesListAdapter = new GamesListAdapter(getContext());
-    gamesList.setAdapter(gamesListAdapter);
+
+    ParseQuery<ParseObject> query = ParseQuery.getQuery("Pick");
+    query.whereEqualTo("userId", ParseUser.getCurrentUser().getObjectId());
+    query.findInBackground(new FindCallback<ParseObject>() {
+      public void done(List<ParseObject> picksList, ParseException e) {
+        if (e == null) {
+          for (ParseObject pick : picksList) {
+            picks.put(pick.getString("gameId"), pick.getBoolean("result"));
+            pickIds.put(pick.getString("gameId"), pick.getObjectId());
+          }
+          // Set adapter after picks and picksIds have been found.
+          gamesList.setAdapter(gamesListAdapter);
+        }
+      }
+    });
 
     presenter.takeView(this);
   }
 
   private class GamesListAdapter extends ParseQueryAdapter<Game> {
-
-    private HashMap<String, Boolean> picks = new HashMap<>();
-    private HashMap<String, String> pickIds = new HashMap<>();
 
     public GamesListAdapter(Context context) {
       super(context, new ParseQueryAdapter.QueryFactory<Game>() {
@@ -61,19 +74,6 @@ public class PicksView extends LinearLayout {
           ParseQuery<Game> query = Game.getQuery();
           query.orderByAscending("gameDate");
           return query;
-        }
-      });
-
-      ParseQuery<ParseObject> query = ParseQuery.getQuery("Pick");
-      query.whereEqualTo("userId", ParseUser.getCurrentUser().getObjectId());
-      query.findInBackground(new FindCallback<ParseObject>() {
-        public void done(List<ParseObject> picksList, ParseException e) {
-          if (e == null) {
-            for (ParseObject pick : picksList) {
-              picks.put(pick.getString("gameId"), pick.getBoolean("result"));
-              pickIds.put(pick.getString("gameId"), pick.getObjectId());
-            }
-          }
         }
       });
     }

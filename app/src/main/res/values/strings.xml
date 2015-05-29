@@ -3,7 +3,13 @@
     <string name="game">Game</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+    <string name="password_confirm_hint">confirm password</string>
     <string name="password_hint">password</string>
+    <string name="screen_name_hint">screen name</string>
     <string name="sign_up">Sign Up</string>
+    <string name="tab_picks_title">Picks</string>
+    <string name="tab_results_title">Results</string>
+    <string name="tab_standings_title">Standings</string>
+    <string name="tab_settings_title">Settings</string>
     <string name="username_hint">username</string>
 </resources>

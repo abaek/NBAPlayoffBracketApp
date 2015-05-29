@@ -17,11 +17,27 @@
         android:textSize="@dimen/abc_text_size_body_1_material"/>
 
     <EditText
+        android:id="@+id/screen_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/screen_name_hint"
+        android:layout_marginBottom="@dimen/gutter_half"
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
+
+    <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="@string/password_hint"
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
+
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/password_confirm_hint"
         android:textSize="@dimen/abc_text_size_body_1_material"/>
 
     <Button

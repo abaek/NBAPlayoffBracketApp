@@ -1,8 +1,11 @@
 package com.example.andy.nbaplayoffbracket;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -34,18 +37,37 @@ public class SignUpScreen implements Blueprint {
       super.onLoad(savedInstanceState);
     }
 
-    public void registerClicked(String username, String password) {
-      ParseUser user = new ParseUser();
-      user.setUsername(username);
-      user.setPassword(password);
-      user.signUpInBackground(new SignUpCallback() {
-        @Override
-        public void done(ParseException e) {
-          if (e == null) {
-            flow.replaceTo(new LoginScreen());
+    public void registerClicked(final String username, String screenName, final String password, String confirmPassword) {
+      if (password != confirmPassword) {
+        Toast.makeText(getView().getContext(), "Passwords don't match.", Toast.LENGTH_SHORT).show();
+      } else {
+        ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.setPassword(password);
+
+        // Save user screen name.
+        ParseObject userInfo = new ParseObject("UserInfo");
+        userInfo.put("userId", user.getObjectId());
+        userInfo.put("screenName", screenName);
+        userInfo.put("score", 0);
+        userInfo.saveInBackground();
+
+        user.signUpInBackground(new SignUpCallback() {
+          @Override
+          public void done(ParseException e) {
+            if (e == null) {
+              // Automaticaly login after signing up.
+              ParseUser.logInInBackground(username, password, new LogInCallback() {
+                public void done(ParseUser user, ParseException e) {
+                  if (user != null) {
+                    flow.resetTo(new PicksScreen());
+                  }
+                }
+              });
+            }
           }
-        }
-      });
+        });
+      }
     }
   }
 

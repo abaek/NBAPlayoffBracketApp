@@ -12,12 +12,12 @@ import flow.Layout;
 import mortar.Blueprint;
 import mortar.ViewPresenter;
 
-@Layout(R.layout.matrix_view)
-@Module(injects = MatrixView.class, addsTo = MatrixScreen.Module.class)
-public class MatrixScreen implements Blueprint {
+@Layout(R.layout.results_view)
+@Module(injects = ResultsView.class, addsTo = ResultsScreen.Module.class)
+public class ResultsScreen implements Blueprint {
 
   @Singleton
-  static class Presenter extends ViewPresenter<MatrixView> {
+  static class Presenter extends ViewPresenter<ResultsView> {
 
     private final Flow flow;
     private final ActionBar actionBar;

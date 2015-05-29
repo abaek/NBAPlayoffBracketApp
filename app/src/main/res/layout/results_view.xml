@@ -1,0 +1,11 @@
+<com.example.andy.nbaplayoffbracket.ResultsView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/results_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</com.example.andy.nbaplayoffbracket.ResultsView>
