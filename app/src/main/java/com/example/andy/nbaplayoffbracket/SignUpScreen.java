@@ -37,29 +37,30 @@ public class SignUpScreen implements Blueprint {
       super.onLoad(savedInstanceState);
     }
 
-    public void registerClicked(final String username, String screenName, final String password, String confirmPassword) {
-      if (password != confirmPassword) {
+    public void registerClicked(final String username, final String screenName, final String password, String confirmPassword) {
+      if (!password.equals(confirmPassword)) {
         Toast.makeText(getView().getContext(), "Passwords don't match.", Toast.LENGTH_SHORT).show();
       } else {
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.setPassword(password);
 
-        // Save user screen name.
-        ParseObject userInfo = new ParseObject("UserInfo");
-        userInfo.put("userId", user.getObjectId());
-        userInfo.put("screenName", screenName);
-        userInfo.put("score", 0);
-        userInfo.saveInBackground();
-
         user.signUpInBackground(new SignUpCallback() {
           @Override
           public void done(ParseException e) {
             if (e == null) {
-              // Automaticaly login after signing up.
+              // Automatically login after signing up.
               ParseUser.logInInBackground(username, password, new LogInCallback() {
                 public void done(ParseUser user, ParseException e) {
                   if (user != null) {
+
+                    // Save user screen name.
+                    ParseObject userInfo = new ParseObject("UserInfo");
+                    userInfo.put("userId", user.getObjectId());
+                    userInfo.put("screenName", screenName);
+                    userInfo.put("score", 0);
+                    userInfo.saveInBackground();
+
                     flow.resetTo(new PicksScreen());
                   }
                 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,44 +48,45 @@ public class ResultsView extends LinearLayout {
     resultsList = (ListView) findViewById(R.id.results_list);
     resultsListAdapter = new ResultsListAdapter(getContext());
 
-    // Query ALL picks and order them into win and lose hashmaps by game id and user ids.
-    ParseQuery<ParseObject> picksQuery = ParseQuery.getQuery("Pick");
-    picksQuery.findInBackground(new FindCallback<ParseObject>() {
-      public void done(List<ParseObject> picksList, ParseException e) {
-        for (ParseObject pick : picksList) {
-          // Voted for win.
-          if (pick.getBoolean("result")) {
-            // Add new user id to game id.
-            if (winGamesToUserIds.containsKey(pick.getString("gameId"))) {
-              ArrayList<String> userIds = (ArrayList) winGamesToUserIds.get(pick.getString("gameId"));
-              userIds.add(pick.getString("userId"));
-              winGamesToUserIds.put(pick.getString("gameId"), userIds);
-            }
-            // Set new array list.
-            else {
-              winGamesToUserIds.put(pick.getString("gameId"), new ArrayList<>(asList(pick.getString("userId"))));
-            }
-          }
-          // Voted for loss.
-          else {
-            // Add new user id to game id.
-            if (loseGamesToUserIds.containsKey(pick.getString("gameId"))) {
-              ArrayList<String> userIds = (ArrayList) loseGamesToUserIds.get(pick.getString("gameId"));
-              userIds.add(pick.getString("userId"));
-              loseGamesToUserIds.put(pick.getString("gameId"), userIds);
-            }
-            // Set new array list.
-            else {
-              loseGamesToUserIds.put(pick.getString("gameId"), new ArrayList<>(asList(pick.getString("userId"))));
-            }
-          }
+    ParseQuery<ParseObject> screenNamesQuery = ParseQuery.getQuery("UserInfo");
+    screenNamesQuery.findInBackground(new FindCallback<ParseObject>() {
+      @Override
+      public void done(List<ParseObject> usersList, ParseException e) {
+        for (ParseObject user : usersList) {
+          userScreenNames.put(user.getString("userId"), user.getString("screenName"));
         }
-        ParseQuery<ParseObject> screenNamesQuery = ParseQuery.getQuery("UserInfo");
-        screenNamesQuery.findInBackground(new FindCallback<ParseObject>() {
-          @Override
-          public void done(List<ParseObject> usersList, ParseException e) {
-            for (ParseObject user : usersList) {
-              userScreenNames.put(user.getString("userId"), user.getString("screenName"));
+
+        // Query ALL picks and order them into win and lose hashmaps by game id and user ids.
+        ParseQuery<ParseObject> picksQuery = ParseQuery.getQuery("Pick");
+        picksQuery.findInBackground(new FindCallback<ParseObject>() {
+          public void done(List<ParseObject> picksList, ParseException e) {
+            for (ParseObject pick : picksList) {
+              // Voted for win.
+              if (pick.getBoolean("result")) {
+                // Add new user id to game id.
+                if (winGamesToUserIds.containsKey(pick.getString("gameId"))) {
+                  ArrayList<String> userIds = (ArrayList) winGamesToUserIds.get(pick.getString("gameId"));
+                  userIds.add(userScreenNames.get(pick.getString("userId")));
+                  winGamesToUserIds.put(pick.getString("gameId"), userIds);
+                }
+                // Set new array list.
+                else {
+                  winGamesToUserIds.put(pick.getString("gameId"), new ArrayList<>(asList(userScreenNames.get(pick.getString("userId")))));
+                }
+              }
+              // Voted for loss.
+              else {
+                // Add new user id to game id.
+                if (loseGamesToUserIds.containsKey(pick.getString("gameId"))) {
+                  ArrayList<String> userIds = (ArrayList) loseGamesToUserIds.get(pick.getString("gameId"));
+                  userIds.add(userScreenNames.get(pick.getString("userId")));
+                  loseGamesToUserIds.put(pick.getString("gameId"), userIds);
+                }
+                // Set new array list.
+                else {
+                  loseGamesToUserIds.put(pick.getString("gameId"), new ArrayList<>(asList(userScreenNames.get(pick.getString("userId")))));
+                }
+              }
             }
             // Set adapter after picks and users have been loaded.
             resultsList.setAdapter(resultsListAdapter);
@@ -115,8 +117,8 @@ public class ResultsView extends LinearLayout {
         view = View.inflate(getContext(), R.layout.result_row, null);
         holder = new ViewHolder();
         holder.gameId = game.getObjectId();
-        holder.homeUsers = (TextView) view.findViewById(R.id.home_users);
-        holder.awayUsers = (TextView) view.findViewById(R.id.away_users);
+        holder.homeUsers = (ListView) view.findViewById(R.id.home_users);
+        holder.awayUsers = (ListView) view.findViewById(R.id.away_users);
         holder.homeTeamName = (TextView) view.findViewById(R.id.home_team_name);
         holder.awayTeamName = (TextView) view.findViewById(R.id.away_team_name);
         view.setTag(holder);
@@ -127,21 +129,19 @@ public class ResultsView extends LinearLayout {
       holder.homeTeamName.setText(game.getHomeTeam());
       holder.awayTeamName.setText(game.getAwayTeam());
 
-      String homeTeamUsers = "";
+      List<String> homeTeamUsers = new ArrayList<>();
       if (winGamesToUserIds.containsKey(holder.gameId)) {
-        for (String userId : winGamesToUserIds.get(holder.gameId)) {
-          homeTeamUsers = homeTeamUsers + " " + userScreenNames.get(userId);
-        }
+        homeTeamUsers = winGamesToUserIds.get(holder.gameId);
       }
-      holder.homeUsers.setText(homeTeamUsers);
+      ArrayAdapter<String> homeAdapter = new ArrayAdapter<>(getContext(), R.layout.user_list_left, homeTeamUsers);
+      holder.homeUsers.setAdapter(homeAdapter);
 
-      String awayTeamUsers = "";
+      List<String> awayTeamUsers = new ArrayList<>();
       if (loseGamesToUserIds.containsKey(holder.gameId)) {
-        for (String userId : loseGamesToUserIds.get(holder.gameId)) {
-          awayTeamUsers = awayTeamUsers + " " + userScreenNames.get(userId);
-        }
+        awayTeamUsers = loseGamesToUserIds.get(holder.gameId);
       }
-      holder.awayUsers.setText(awayTeamUsers);
+      ArrayAdapter<String> awayAdapter = new ArrayAdapter<>(getContext(), R.layout.user_list_right, awayTeamUsers);
+      holder.awayUsers.setAdapter(awayAdapter);
 
       return view;
     }
@@ -151,7 +151,7 @@ public class ResultsView extends LinearLayout {
     String gameId;
     TextView homeTeamName;
     TextView awayTeamName;
-    TextView homeUsers;
-    TextView awayUsers;
+    ListView homeUsers;
+    ListView awayUsers;
   }
 }
