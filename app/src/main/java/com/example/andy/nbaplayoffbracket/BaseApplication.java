@@ -17,6 +17,7 @@ public class BaseApplication extends Application {
     rootScope = Mortar.createRootScope(BuildConfig.DEBUG);
 
     ParseObject.registerSubclass(Game.class);
+    ParseObject.registerSubclass(UserInfo.class);
     Parse.initialize(this, "XMlHOICLdsocoC7Zy0x3sf9i6PFmIQmfyZ96xKw4", "wBEZtH5EpDKxLmSqFe3Ibr2VqbhA28rnYg45Q8iP");  }
 
   public MortarScope getRootScope() {

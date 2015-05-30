@@ -5,7 +5,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 @ParseClassName("UserInfo")
-public class UserInfo extends ParseObject{
+public class UserInfo extends ParseObject {
 
   public String getUserId() {
     return getString("userId");

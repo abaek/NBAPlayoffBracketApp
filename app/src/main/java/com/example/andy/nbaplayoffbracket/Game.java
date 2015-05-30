@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @ParseClassName("Game")
-public class Game extends ParseObject{
+public class Game extends ParseObject {
 
   public String getHomeTeam() {
     return getString("home");
