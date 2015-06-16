@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -117,8 +116,8 @@ public class ResultsView extends LinearLayout {
         view = View.inflate(getContext(), R.layout.result_row, null);
         holder = new ViewHolder();
         holder.gameId = game.getObjectId();
-        holder.homeUsers = (ListView) view.findViewById(R.id.home_users);
-        holder.awayUsers = (ListView) view.findViewById(R.id.away_users);
+        holder.homeUsers = (LinearLayout) view.findViewById(R.id.home_users);
+        holder.awayUsers = (LinearLayout) view.findViewById(R.id.away_users);
         holder.homeTeamName = (TextView) view.findViewById(R.id.home_team_name);
         holder.awayTeamName = (TextView) view.findViewById(R.id.away_team_name);
         view.setTag(holder);
@@ -133,15 +132,26 @@ public class ResultsView extends LinearLayout {
       if (winGamesToUserIds.containsKey(holder.gameId)) {
         homeTeamUsers = winGamesToUserIds.get(holder.gameId);
       }
-      ArrayAdapter<String> homeAdapter = new ArrayAdapter<>(getContext(), R.layout.user_list_left, homeTeamUsers);
-      holder.homeUsers.setAdapter(homeAdapter);
+
+      // Dynamically add views to linear layout.
+      for (String homeUser : homeTeamUsers) {
+        View usernameRow = View.inflate(getContext(), R.layout.user_list_left, null);
+        TextView nameInRow = (TextView) usernameRow.findViewById(R.id.name);
+        nameInRow.setText(homeUser);
+        holder.homeUsers.addView(usernameRow);
+      }
 
       List<String> awayTeamUsers = new ArrayList<>();
       if (loseGamesToUserIds.containsKey(holder.gameId)) {
         awayTeamUsers = loseGamesToUserIds.get(holder.gameId);
       }
-      ArrayAdapter<String> awayAdapter = new ArrayAdapter<>(getContext(), R.layout.user_list_right, awayTeamUsers);
-      holder.awayUsers.setAdapter(awayAdapter);
+
+      for (String awayUser : awayTeamUsers) {
+        View usernameRow = View.inflate(getContext(), R.layout.user_list_right, null);
+        TextView nameInRow = (TextView) usernameRow.findViewById(R.id.name);
+        nameInRow.setText(awayUser);
+        holder.awayUsers.addView(usernameRow);
+      }
 
       return view;
     }
@@ -151,7 +161,7 @@ public class ResultsView extends LinearLayout {
     String gameId;
     TextView homeTeamName;
     TextView awayTeamName;
-    ListView homeUsers;
-    ListView awayUsers;
+    LinearLayout homeUsers;
+    LinearLayout awayUsers;
   }
 }

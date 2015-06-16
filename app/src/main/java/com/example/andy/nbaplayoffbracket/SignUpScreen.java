@@ -55,7 +55,7 @@ public class SignUpScreen implements Blueprint {
                   if (user != null) {
 
                     // Save user screen name.
-                    ParseObject userInfo = new ParseObject("UserInfo");
+                    ParseObject userInfo = ParseObject.create("UserInfo");
                     userInfo.put("userId", user.getObjectId());
                     userInfo.put("screenName", screenName);
                     userInfo.put("score", 0);
